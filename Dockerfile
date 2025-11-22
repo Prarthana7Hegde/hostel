@@ -1,20 +1,20 @@
 # Use official Node.js runtime
 FROM node:18-alpine
 
-# Set working directory
+# Set working directory inside the container
 WORKDIR /app
 
-# Copy backend package files first (for caching)
+# Copy backend package files
 COPY backend/package*.json ./
 
 # Install dependencies
 RUN npm install
 
-# Copy all backend source code
+# Copy backend source code
 COPY backend/ .
 
-# Expose the port (Railway sets process.env.PORT automatically)
+# Expose your backend port
 EXPOSE 4000
 
-# Start the backend from src/server.js
+# Run server.js located inside backend/src
 CMD ["node", "src/server.js"]
